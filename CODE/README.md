@@ -4,7 +4,7 @@ mac0S - use brew -> brew install mvn
 window - download maven and send to your path
 
 
-steps to run <Make sure you are in the servelet-example folder>
+steps to run //Make sure you are in the servelet-example folder//
 
 1.  mvn clean install
 2.  mvn clean package
