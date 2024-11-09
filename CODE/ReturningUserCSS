@@ -1,0 +1,33 @@
+body{
+  padding: 33%;
+}
+.heading {
+	color: #000001;
+	text-align: center;
+	font-size: 40px;
+	font-family: Trebuchet MS;
+	padding-bottom: 50%;
+}
+
+*{
+  box-sizing: border-box;
+  text-align: center;
+  
+}
+
+.username, .password, .confirm
+{
+  color: #7C2CB3;
+  text-align: left;
+  padding-bottom: 15%;
+  label {
+    font-size: 16px;
+    font-family: Georgia;
+  }
+}
+
+input
+{
+  border: 2px solid black;
+  border-color: #000000;
+}
