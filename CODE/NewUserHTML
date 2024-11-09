@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BookQ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <div class ="heading">
+        <label>Sign up</label>
+      </div>
+      <div class="username">
+        <label for="username">Username:</label>
+        <input type="text", id="username",name="username">
+      </div>
+      <div class="password">
+        <label for="password1">Password:</label>
+        <input type="text", id="password1", name="password1">
+      </div>
+      <div class ="confirm">
+        <label for="password2">Confirm password:</label>
+        <input type="text", id="password2", name="password2">        
+      </div>
+  </body>
+</html>
