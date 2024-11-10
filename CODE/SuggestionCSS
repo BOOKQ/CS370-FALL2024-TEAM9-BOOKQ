@@ -1,0 +1,85 @@
+.body
+{
+  padding: 10%;
+  content: center;
+}
+
+.heading {
+	color: #000001;
+	text-align: center;
+	font-size: 40px;
+	font-family: Trebuchet MS;
+	padding-bottom: 50%;
+}
+
+.blurb
+{
+  border: 3px solid black;
+  overflow: scroll;
+  height: 200px;
+  margin: auto;
+  align-text: center;
+  border-color: black;
+}
+
+.button1
+{
+  font-family: Georgia ;
+  font-size: 16px;
+  color: black;
+  background-color:#008CBA;
+  align-content: center;
+  display: inline-block;
+  height: 75px;
+  width: 150px;
+  padding: 10%
+  
+}
+.button1:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.cover
+{
+  width: 150px;
+  align-content: center;
+  padding-bottom: 
+}
+
+.grid-item1 {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: black;
+  font-size: 20px;
+  font-family: Verdana;
+  color: black;
+  text-align: left;
+  overflow: scroll;
+  align-content: center;
+}
+
+.grid-container
+{
+  display: grid;
+  grid-template-columns: auto;
+  align-content: center;
+  padding-left: 33%;
+  padding-bottom: 10%;
+  padding-top: 10%;
+}
+.grid-container1
+{
+  display: grid;
+  grid-template-columns: auto;
+  margin: auto;
+  align-items: center;
+  padding-bottom: 50px;
+  padding-left: 75px;
+  padding-right:75px;
+}
+.grid-container2
+  {
+  display: grid;
+  grid-template-columns: auto auto auto; 
+  margin: auto;
+  }
