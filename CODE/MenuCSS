@@ -1,0 +1,43 @@
+.body
+{
+  padding: 20%;
+  content: center;
+}
+
+.heading {
+	color: #000001;
+	text-align: center;
+	font-size: 40px;
+	font-family: Trebuchet MS;
+	padding-bottom: 50%;
+}
+
+.button1
+{
+  font-family: Georgia ;
+  font-size: 28px;
+  color: black;
+  background-color:#008CBA;
+  align-content: center;
+  display: inline-block;
+  width: 300px;
+  padding: 5%;
+  
+}
+.button1:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5%;
+  font-size: 30px;
+  text-align: center;
+}
+.grid-container
+  {
+  display: grid;
+  grid-template-columns: auto 
+  padding: 20%;
+  }
