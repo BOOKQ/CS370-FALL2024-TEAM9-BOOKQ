@@ -25,3 +25,28 @@ body{
     font-family: Georgia;
   }
 }
+
+.grid-container2{
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.grid-item2{
+  align-content: center;
+  padding-top: 100px;
+  padding-left: 100px;
+  padding-right:100px;
+}
+
+.button{
+  font-size: 20px;
+  font-family: Georgia;
+}
+
+.button:hover{
+  color: green;
+  background-color: blue;
+  font-family: Georgia;
+}
