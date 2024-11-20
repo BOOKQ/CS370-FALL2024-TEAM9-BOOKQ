@@ -1,7 +1,7 @@
 First install maven on your computer
 
 mac0S - use brew -> brew install mvn
-window - download maven and send to your path
+window - download maven zip, unzip and add to your path via system environemntal variables or path
 
 
 steps to run //Make sure you are in the servelet-example folder//
@@ -11,4 +11,4 @@ steps to run //Make sure you are in the servelet-example folder//
 3.  mvn jetty:run
 
 
-once your server is running, access using localhost:8080
+once your server is running, access using 127.0.0.1:8080/login.html
