@@ -1,25 +1,58 @@
 package com.example;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.server.handler.HandlerList;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        // Create a basic Jetty server object that will listen on port 8080.
+        // Create a Jetty server on port 8080
         Server server = new Server(8080);
 
-        // Set the context for servlets
+        // Set up a ServletContextHandler for servlets
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
-        server.setHandler(context);
 
-        // Add a servlet for handling login requests
-        context.addServlet(LoginServlet.class, "/login");
+        // Add the LoginServlet
+        ServletHolder loginHolder = new ServletHolder(new LoginServlet());
+        context.addServlet(loginHolder, "/login");
+
+        // Add a default redirect servlet for root path
+        ServletHolder defaultHolder = new ServletHolder(new HttpServlet() {
+            @Override
+            protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+                resp.sendRedirect("login.html");
+            }
+        });
+        context.addServlet(defaultHolder, "/");
+
+        // Add the SignServlet
+        ServletHolder signServletHolder = new ServletHolder(new SignServlet());
+        context.addServlet(signServletHolder, "/signup");
+
+        // Set up a ResourceHandler for static resources
+        ResourceHandler resourceHandler = new ResourceHandler();
+        resourceHandler.setDirectoriesListed(true);
+        resourceHandler.setResourceBase("src/main/webapp");
+
+        // Combine handlers (ensure the ServletContextHandler comes first)
+        HandlerList handlers = new HandlerList();
+        handlers.addHandler(context); // ServletContextHandler first
+        handlers.addHandler(resourceHandler); // ResourceHandler second
+
+        // Set the handlers on the server
+        server.setHandler(handlers);
 
         // Start the server
+        System.out.println("Starting Jetty server...");
         server.start();
-        System.out.println("Server started at http://localhost:8080");
-        server.join();  // Wait for server to close
+        System.out.println("Jetty server started on port 8080");
+        server.join();
     }
 }
-
