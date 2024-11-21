@@ -1,0 +1,7 @@
+For my code I used the same formatting as Tobi and tried to use the same variables too for it all to come together. I also used these GeeksforGeeks links which you guys might find helpful too
+
+https://www.geeksforgeeks.org/how-to-connect-sql-server-database-from-javascript-in-the-browser/
+
+https://www.geeksforgeeks.org/establishing-jdbc-connection-in-java/
+
+-the front end html/javascript will interact with backend written in java

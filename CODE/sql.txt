@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS quiz_responses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    favorite_genre VARCHAR(50),
+    least_favorite_genre VARCHAR(50),
+    book_length_preference VARCHAR(50),
+    FOREIGN KEY (user_id) REFERENCES accounts(id)
+);
