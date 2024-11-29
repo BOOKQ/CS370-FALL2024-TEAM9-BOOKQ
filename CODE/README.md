@@ -8,7 +8,7 @@ window - download maven zip, unzip and add to your path via system environemntal
 ****STEP2*******
 install mysql on your computer
 
-mac00S - use brew -> brew install mvn
+mac00S - use brew -> brew install mysql
 window - download use choco or download mysql binary and add to your environment varibales or path
 
 Access the database and create a database

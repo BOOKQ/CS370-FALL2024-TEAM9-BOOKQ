@@ -36,6 +36,10 @@ public class Main {
         ServletHolder signServletHolder = new ServletHolder(new SignServlet());
         context.addServlet(signServletHolder, "/signup");
 
+        // Add the QuizServlet
+        ServletHolder quizServletHolder = new ServletHolder(new QuizServlet());
+        context.addServlet(quizServletHolder, "/quiz");
+
         // Set up a ResourceHandler for static resources
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(true);
