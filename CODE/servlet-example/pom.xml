@@ -1,18 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.example</groupId>
-    <artifactId>my-app</artifactId>
+    <artifactId>servlet-example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <properties>
-        <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- Servlet API -->
+        <!-- Jakarta Servlet API -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -20,6 +23,19 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Jackson for JSON processing -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.3</version>
+        </dependency>
+
+        <!-- JDBC driver (e.g., MySQL) -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.29</version>
+        </dependency>
 
         <!-- Jetty Server -->
         <dependency>
@@ -32,44 +48,23 @@
             <artifactId>jetty-servlet</artifactId>
             <version>11.0.15</version>
         </dependency>
-
-        <!-- MySQL JDBC Driver -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.15.2</version> <!-- Use the latest compatible version -->
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet.jsp.jstl</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.servlet.jsp.jstl</artifactId>
-            <version>3.0</version>
-        </dependency>
-
-</dependencies>
+    </dependencies>
 
     <build>
         <plugins>
+            <!-- Jetty Maven Plugin -->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>11.0.15</version>
                 <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
                         <contextPath>/</contextPath>
-                        <war>${project.build.directory}/${project.build.finalName}</war>
+                        <war>${project.build.directory}/${project.build.finalName}.war</war>
                     </webApp>
                 </configuration>
-            </plugin><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration><source>8</source><target>8</target></configuration></plugin>
+            </plugin>
         </plugins>
     </build>
 </project>

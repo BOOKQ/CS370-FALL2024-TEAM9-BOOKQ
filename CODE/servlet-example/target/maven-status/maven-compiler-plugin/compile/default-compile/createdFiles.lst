@@ -1,7 +1,6 @@
-com/example/Main$1.class
-com/example/QuizServlet.class
-com/example/BookServlet.class
 com/example/LoginServlet.class
+com/example/Main$1.class
 com/example/SignServlet.class
 com/example/Main.class
-com/example/BookServlet$Book.class
+com/example/QuizServlet.class
+com/example/RecommendationsServlet.class

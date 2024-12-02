@@ -23,10 +23,6 @@ public class Main {
         ServletHolder loginHolder = new ServletHolder(new LoginServlet());
         context.addServlet(loginHolder, "/login");
 
-        // Add the BookServlet
-        ServletHolder BookServletHolder = new ServletHolder(new BookServlet());
-        context.addServlet(BookServletHolder, "/books");
-
         // Add a default redirect servlet for root path
         ServletHolder defaultHolder = new ServletHolder(new HttpServlet() {
             @Override

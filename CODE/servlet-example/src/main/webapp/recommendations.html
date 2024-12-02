@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            padding: 20px;
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0078CC;
+            color: white;
+        }
+
+        td button {
+            background-color: #0078CC;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        td button:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Recommended Books</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="recommendations"></tbody>
+    </table>
+    <a href="home.html" style="margin-top: 20px; display: inline-block;">Return to Main Menu</a>
+    <script>
+        // Fetch recommendations from server (assumes the server provides recommendations)
+        fetch("/recommendations")
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById("recommendations");
+                data.books.forEach(book => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${book.Bookname}</td>
+                        <td>${book.Author}</td>
+                        <td><button onclick="window.open('https://isbnsearch.org/isbn/${book.ISBN_ID}', '_blank')">Find on ISBN</button></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error("Error fetching recommendations:", error));
+    </script>
+</body>
+</html>
