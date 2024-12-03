@@ -6,20 +6,24 @@ PROJECT BOOKQ
 MEMBERS: REECE HARRIS, BRIAN KING, OLUWATOBI BADEJO, JESSICA HERNANDEZ
 
 
-*****STEP1*******
+# *****STEP1*******
 
 install maven on your computer
 
-mac0S - use brew -> brew install mvn
-window - download maven zip, unzip and add to your path via system environemntal variables or path
+# mac0S 
+use brew -> brew install mvn
+# window 
+ download maven zip, unzip and add to your path via system environemntal variables or path
 
-****STEP2*******
+# ****STEP2*******
 install mysql on your computer
 
-mac00S - use brew -> brew install mysql
-window - download use choco or download mysql binary and add to your environment varibales or path
+# macOS 
+use brew -> brew install mysql
+# window 
+download use choco or download mysql binary and add to your environment varibales or path
 
-Access the database and create a database
+# Access the database and create a database
 -> mysql -u root -p -> to access the MySQL (mysql must have these credentials)
 -> create database bookq;
 -> use bookq;
@@ -53,7 +57,7 @@ CREATE TABLE recommendations (
 
 Perform the INSERT statement found in /CODE/insert_books.sql
 
-*******STEP3*********
+# *******STEP3*********
 
 Before you run the below syntax ----> //Make sure you are in the *********SERVELET-EXAMPLE************ folder// before you perform next steps.
 
