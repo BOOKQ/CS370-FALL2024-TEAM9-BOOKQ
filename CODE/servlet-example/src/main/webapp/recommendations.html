@@ -3,77 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommended Books</title>
+    <title>Recommendations</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
-            padding: 20px;
-            text-align: center;
+            margin: 20px;
         }
 
         table {
-            margin: 0 auto;
+            width: 100%;
             border-collapse: collapse;
-            width: 80%;
-            background: #fff;
+            margin-bottom: 20px;
         }
 
         th, td {
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             padding: 10px;
             text-align: left;
         }
 
         th {
-            background-color: #0078CC;
-            color: white;
+            background-color: #f4f4f4;
         }
 
-        td button {
+        .btn {
+            padding: 10px 15px;
             background-color: #0078CC;
             color: white;
             border: none;
-            padding: 5px 10px;
-            cursor: pointer;
             border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        td button:hover {
-            background-color: #005fa3;
+        .btn:hover {
+            background-color: #005FA3;
         }
     </style>
 </head>
 <body>
-    <h1>Your Recommended Books</h1>
-    <table>
+    <h1>Recommendations</h1>
+    <table id="recommendations">
         <thead>
             <tr>
-                <th>Title</th>
+                <th>Book Name</th>
                 <th>Author</th>
-                <th>Action</th>
+                <th>Rate</th>
             </tr>
         </thead>
-        <tbody id="recommendations"></tbody>
+        <tbody>
+            <!-- Books will be dynamically inserted here -->
+        </tbody>
     </table>
-    <a href="home.html" style="margin-top: 20px; display: inline-block;">Return to Main Menu</a>
+    <button class="btn" onclick="window.location.href='/home.html'">Back to Home</button>
+    <button class="btn" onclick="window.location.href='/savedbooks.html'">View Saved Books</button>
+
     <script>
-        // Fetch recommendations from server (assumes the server provides recommendations)
         fetch("/recommendations")
             .then(response => response.json())
             .then(data => {
-                const tableBody = document.getElementById("recommendations");
+                const tableBody = document.getElementById("recommendations").querySelector("tbody");
+                tableBody.innerHTML = "";
                 data.books.forEach(book => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
                         <td>${book.Bookname}</td>
                         <td>${book.Author}</td>
-                        <td><button onclick="window.open('https://isbnsearch.org/isbn/${book.ISBN_ID}', '_blank')">Find on ISBN</button></td>
+                        <td>
+                            <button class="btn" onclick="rateBook('${book.BookID}', 'up')">👍 Thumbs Up</button>
+                            <button class="btn" onclick="rateBook('${book.BookID}', 'down')">👎 Thumbs Down</button>
+                        </td>
                     `;
                     tableBody.appendChild(row);
                 });
             })
             .catch(error => console.error("Error fetching recommendations:", error));
+
+        function rateBook(bookId, rating) {
+            fetch('/rateBook', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    bookId: bookId,
+                    rating: rating
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.log("BOOK: ",bookId, " RATING: ", rating);
+                    console.error("Error:", data.error);
+                } else {
+                    console.log("Success:", data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Request failed", error);
+            });
+        }
+
     </script>
 </body>
 </html>

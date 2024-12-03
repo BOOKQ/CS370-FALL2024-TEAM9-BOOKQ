@@ -63,9 +63,8 @@
     <div class="container">
         <h1>Personality Quiz</h1>
         <form id="quiz-form"></form>
-        <button id="submit-btn" class="submit-btn" style="display:none;">Submit</button>
+        <button id="submit-btn" class="submit-btn">Submit</button>
         <div id="error-message" class="error-message"></div>
-        <a href="home.html" class="submit-btn" style="margin-top: 20px; display: block; text-align: center;">Back to Home</a>
     </div>
 
     <script>
@@ -112,13 +111,12 @@
 
                     quizForm.appendChild(questionDiv);
                 });
-
-                // Make submit button visible
-                submitBtn.style.display = "inline-block"; 
             }
 
             // Submit quiz answers to the server
-            async function submitQuiz() {
+            async function submitQuiz(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+
                 const formData = new FormData(quizForm);
                 const data = {};
 
@@ -128,14 +126,14 @@
                 });
 
                 // Check if all questions have been answered
-                const unansweredQuestions = questions.filter((_, index) => !data[`q${index + 1}`]);
+                const unansweredQuestions = Object.keys(data).length < quizForm.querySelectorAll('div.question').length;
 
-                if (unansweredQuestions.length > 0) {
+                if (unansweredQuestions) {
                     errorMessageDiv.innerHTML = "<p>Please answer all questions before submitting.</p>";
                     return;
                 }
 
-                // Send quiz data to server and redirect to home page after submission
+                // Send quiz data to server
                 try {
                     const response = await fetch("/quiz", {
                         method: "POST",

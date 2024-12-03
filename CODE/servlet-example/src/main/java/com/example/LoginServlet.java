@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -13,11 +15,10 @@ import java.sql.*;
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Connection to database
+    // Database connection details
     private static final String DB_URL = "jdbc:mysql://localhost:3306/bookq";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +36,7 @@ public class LoginServlet extends HttpServlet {
             // Establish a connection
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            // Create table if it doesn't exist
+            // Ensure the accounts table exists
             String createTableSQL = "CREATE TABLE IF NOT EXISTS accounts ("
                     + "id INT AUTO_INCREMENT PRIMARY KEY,"
                     + "firstname VARCHAR(50) NOT NULL,"
@@ -44,20 +45,23 @@ public class LoginServlet extends HttpServlet {
                     + "username VARCHAR(50) NOT NULL UNIQUE,"
                     + "password VARCHAR(255) NOT NULL"
                     + ")";
-
             Statement createTableStmt = conn.createStatement();
             createTableStmt.executeUpdate(createTableSQL);
 
-            // Prepare SQL statement
+            // Prepare SQL statement to check login credentials
             String sql = "SELECT * FROM accounts WHERE username = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
             stmt.setString(2, password);
 
-            // Execute query
+            // Execute the query
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
+                // Store username in session
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+
                 // Redirect to home page on successful login
                 response.sendRedirect("home.html");
             } else {
