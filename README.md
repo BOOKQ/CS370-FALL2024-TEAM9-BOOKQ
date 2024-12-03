@@ -57,10 +57,10 @@ CREATE TABLE recommendations (
 
 # LOAD THE SAMPLE DATA /CODE/insert_books.sql INTO THE DATABASE 
 DOWNLOAD THE INSERT_BOOKS.SQL TO YOUR DOWNLOADS FOLDER
--> mysql -u root -p
--> Enter Password
--> Use bookq
--> source ~/downloads/insert_books.sql
+- mysql -u root -p
+-  Enter Password
+-  use bookq;
+-  source ~/downloads/insert_books.sql;
 
 # *******STEP3*********
 
