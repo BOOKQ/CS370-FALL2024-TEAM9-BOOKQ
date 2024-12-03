@@ -36,6 +36,9 @@ public class Main {
         ServletHolder signServletHolder = new ServletHolder(new SignServlet());
         context.addServlet(signServletHolder, "/signup");
 
+        ServletHolder UserServletHolder = new ServletHolder(new UserBookRatingServlet());
+        context.addServlet(signServletHolder, "/recommendations");
+
         // Add the QuizServlet
         ServletHolder quizServletHolder = new ServletHolder(new QuizServlet());
         context.addServlet(quizServletHolder, "/quiz");
