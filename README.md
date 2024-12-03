@@ -55,7 +55,12 @@ CREATE TABLE recommendations (
     ISBN VARCHAR(20) NOT NULL PRIMARY KEY
 );
 
-Perform the INSERT statement found in /CODE/insert_books.sql
+# LOAD THE SAMPLE DATA /CODE/insert_books.sql INTO THE DATABASE 
+DOWNLOAD THE INSERT_BOOKS.SQL TO YOUR DOWNLOADS FOLDER
+-> mysql -u root -p
+-> Enter Password
+-> Use bookq
+-> source ~/downloads/insert_books.sql
 
 # *******STEP3*********
 
