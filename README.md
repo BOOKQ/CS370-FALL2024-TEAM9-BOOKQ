@@ -24,13 +24,13 @@ use brew -> brew install mysql
 download use choco or download mysql binary and add to your environment varibales or path
 
 # Access the database and create a database
--> mysql -u root -p -> to access the MySQL (mysql must have these credentials)
--> create database bookq;
--> use bookq;
+-  mysql -u root -p -> to access the MySQL (mysql must have these credentials)
+-   create database bookq;
+-   use bookq;
 
-Create necessary tables
+# Create necessary tables
 
-CREATE TABLE accounts (
+- CREATE TABLE accounts (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE accounts (
     password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE books (
+- CREATE TABLE books (
     BookID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Bookname VARCHAR(255) NOT NULL,
     Author VARCHAR(255) NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE books (
     PageLength INT DEFAULT NULL
 );
 
-CREATE TABLE recommendations (
+- CREATE TABLE recommendations (
     book_title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
     genre VARCHAR(255) NOT NULL,
