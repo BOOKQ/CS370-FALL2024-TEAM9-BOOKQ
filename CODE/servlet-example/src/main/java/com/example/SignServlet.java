@@ -70,7 +70,10 @@ public class SignServlet extends HttpServlet {
             int rowsInserted = stmt.executeUpdate();
 
             if (rowsInserted > 0) {
-                out.println("<h3>Account created successfully! Please <a href='login.html'>log in</a>.</h3>");
+                out.println("<script>");
+                out.println("alert('Account created successfully!');");
+                out.println("window.location.href = 'login.html';");
+                out.println("</script>");
             } else {
                 out.println("<h3>Account creation failed. Please try again.</h3>");
             }
