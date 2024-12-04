@@ -48,6 +48,31 @@ public class LoginServlet extends HttpServlet {
             Statement createTableStmt = conn.createStatement();
             createTableStmt.executeUpdate(createTableSQL);
 
+            //ensures the book table is created
+            String createbookSQL = "CREATE TABLE IF NOT EXISTS books ("
+                + "BookID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
+                + "Bookname VARCHAR(255) NOT NULL,"
+                + "Author VARCHAR(255) NOT NULL,"
+                + "ISBN_ID VARCHAR(13) NOT NULL UNIQUE,"
+                + "Genre VARCHAR(100) DEFAULT NULL,"
+                + "PageLength INT DEFAULT NULL"
+                + ")";
+            Statement createbookStmt = conn.createStatement();
+            createbookStmt.executeUpdate(createbookSQL);
+            
+            //ensures the recomme table is created
+            String createRecommendationSQL = "CREATE TABLE IF NOT EXISTS recommendations ("
+                + "book_title VARCHAR(255) NOT NULL,"
+                + "author VARCHAR(255) NOT NULL,"
+                + "genre VARCHAR(255) NOT NULL,"
+                + "ISBN VARCHAR(20) NOT NULL PRIMARY KEY"
+                + ")";
+            Statement createRecommendationStmt = conn.createStatement();
+            createRecommendationStmt.executeUpdate(createRecommendationSQL);
+
+            
+
+
             // Prepare SQL statement to check login credentials
             String sql = "SELECT * FROM accounts WHERE username = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -66,7 +91,9 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("home.html");
             } else {
                 // Show error message
-                out.println("<h3>Invalid credentials. Please try again.</h3>");
+                out.println("<script>");
+                out.println("alert('Invalid credentials. Please try again.');");
+                out.println("</script>");
                 request.getRequestDispatcher("login.html").include(request, response);
             }
 
