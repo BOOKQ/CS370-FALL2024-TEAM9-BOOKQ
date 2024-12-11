@@ -1,20 +1,20 @@
 # CS370-FALL2024-TEAM9-BOOKQ
 ## PROJECT BOOKQ
 
-TEAM 9
-MEMBERS: REECE HARRIS, BRIAN KING, OLUWATOBI BADEJO, JESSICA HERNANDEZ
+Team 9
+Members: Reece Harris, Brian King, Oluwatobi Badejo, Jessica Hernandez 
 
 
 # STEP1
 
-install BookQ dependencies on your computer
+Install BookQ dependencies on your computer
 
-## mac0S 
+## Mac0S 
   - use brew -> brew install openjdk
   - use brew -> brew install mvn
   - use brew -> brew install mysql
-## window (Must be in Powershell [Administrator])
-  - download chocolatey
+## Windows (Must be in Powershell [Administrator])
+  - download chocolatey (run below command)
     
 Set-ExecutionPolicy Bypass -Scope Process -Force; `
 [System.Net.ServicePointManager]::SecurityProtocol = `
@@ -42,4 +42,4 @@ Run the below command
 3.  mvn jetty:run
 
 
-once your server is running, access using 127.0.0.1:8080/login.html
+once your server is running, access using localhost:8080/login.html
