@@ -26,7 +26,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
   - install mysql -> choco install mysql -y
   - install JDK   -> choco install openjdk -y
 
-## IMPORTANT 
+## [Important]
 ### Before you run the below syntax ----> //Make sure you are in the *********SERVELET-EXAMPLE************ folder// before you perform next steps.
 
 Access the database and run the sql script
