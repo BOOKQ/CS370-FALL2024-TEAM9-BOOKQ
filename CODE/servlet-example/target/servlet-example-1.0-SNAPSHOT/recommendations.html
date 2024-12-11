@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .btn {
+            padding: 5px 10px;
+            margin: 2px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recommended Books</h1>
+    <table id="recommendations">
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>ISBN</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be populated dynamically -->
+        </tbody>
+    </table>
+    <script>
+        function fetchRecommendations() {
+            fetch("/recommendations")
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            alert("You must be logged in to view recommendations.");
+                        }
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const tableBody = document.getElementById("recommendations").querySelector("tbody");
+                    tableBody.innerHTML = "";
+
+                    (data.books || []).forEach(book => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${book.Bookname}</td>
+                            <td>${book.Author}</td>
+                            <td>${book.Genre}</td>
+                            <td><a href="https://isbnsearch.org/isbn/${book.ISBN}" target="_blank">${book.ISBN}</a></td>
+                            <td>
+                                <button class="btn" onclick="rateBook('${book.ISBN}', 'up')">👍 Thumbs Up</button>
+                                <button class="btn" onclick="rateBook('${book.ISBN}', 'down')">👎 Thumbs Down</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error("Error fetching recommendations:", error));
+        }
+
+        function rateBook(isbn, rating) {
+            fetch("/rateBook", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ isbn, rating })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Rating submitted:", data);
+                    alert("Rating submitted successfully!");
+                })
+                .catch(error => {
+                    console.error("Failed to submit rating. Please try again later.", error);
+                    alert("Failed to submit rating. Please try again later.");
+                });
+        }
+
+        fetchRecommendations();
+    </script>
+</body>
+</html>
