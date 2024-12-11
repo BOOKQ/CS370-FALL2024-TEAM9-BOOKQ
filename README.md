@@ -7,10 +7,12 @@ MEMBERS: REECE HARRIS, BRIAN KING, OLUWATOBI BADEJO, JESSICA HERNANDEZ
 
 # STEP1
 
-install Maven on your computer
+install BookQ dependencies on your computer
 
 ## mac0S 
+  - use brew -> brew install openjdk
   - use brew -> brew install mvn
+  - use brew -> brew install mysql
 ## window (Must be in Powershell [Administrator])
   - download chocolatey
     
@@ -24,14 +26,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
   - install mysql -> choco install mysql -y
   - install JDK   -> choco install openjdk -y
 
-
-# STEP2
-install mysql on your computer
-
-mac00S - use brew -> brew install mysql
-window - download use choco or download mysql binary and add to your environment varibales or path
-
-# IMPORTANT 
+## IMPORTANT 
 ### Before you run the below syntax ----> //Make sure you are in the *********SERVELET-EXAMPLE************ folder// before you perform next steps.
 
 Access the database and run the sql script
