@@ -27,9 +27,10 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
   - install JDK   -> choco install openjdk -y
 
 ## [Important]
-### Before you run the below syntax ----> //Make sure you are in the *********SERVELET-EXAMPLE************ folder// before you perform next steps.
+### Before you run the below syntax, make sure you are in the following directory
+/[Main Project Folder]/CODE/servlet-example
 
-Access the database
+Access the database<br>
 (mysql must have these credentials)
 -> mysql -u root -p 
 
