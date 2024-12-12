@@ -29,8 +29,9 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 ## [Important]
 ### Before you run the below syntax ----> //Make sure you are in the *********SERVELET-EXAMPLE************ folder// before you perform next steps.
 
-Access the database and run the sql script
--> mysql -u root -p -> to access the MySQL (mysql must have these credentials)
+Access the database
+(mysql must have these credentials)
+-> mysql -u root -p 
 
 Run the below command
 -> mysql> source ./db.sql;
