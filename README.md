@@ -31,10 +31,10 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 /[Main Project Folder]/CODE/servlet-example
 
 Access the database<br>
-(mysql must have these credentials)<br>
+(mysql must have these credentials)<br><br>
 -> mysql -u root -p 
 
-Run the below command<br>
+Run the below command<br><br>
 -> mysql> source ./db.sql;
 
 # STEP3
