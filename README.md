@@ -34,7 +34,7 @@ Access the database<br>
 (mysql must have these credentials)<br>
 -> mysql -u root -p 
 
-Run the below command
+Run the below command<br>
 -> mysql> source ./db.sql;
 
 # STEP3
